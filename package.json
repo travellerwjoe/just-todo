@@ -5,6 +5,9 @@
   "dependencies": {
     "material-ui": "^1.0.0-beta.24",
     "material-ui-icons": "^1.0.0-beta.17",
+    "mobx": "^3.4.1",
+    "mobx-react": "^4.3.5",
+    "mobx-react-devtools": "^4.2.15",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17"
