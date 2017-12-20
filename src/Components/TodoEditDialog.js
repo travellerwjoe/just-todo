@@ -69,7 +69,7 @@ export default class TodoEditForm extends Component {
         if (!id) {
             store.addTodo(task)
         } else {
-            store.updateTodo(id, task)
+            store.updateTodo({ id, task })
         }
         this.setState({
             task: ''
