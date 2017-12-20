@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import TodoItem from './TodoItem'
 import withStyles from 'material-ui/styles/withStyles'
 import { FormGroup, FormLabel } from 'material-ui'
+import { observer } from 'mobx-react'
 
 const styles = {
     todoList: {
@@ -11,23 +12,28 @@ const styles = {
     }
 }
 
+@observer
 class TodoList extends Component {
     static propTypes = {
-        label: PropTypes.string.isRequired
+        // label: PropTypes.string.isRequired
     }
 
     render() {
-        const { classes, label } = this.props
-        return (
-            <section className={classes.todoList}>
-                <FormLabel component="legend">{label}</FormLabel>
+        const { classes, label, store, list } = this.props
+        return ([
+            <section className={classes.todoList} key="uncomplete">
+                <FormLabel component="legend">未完成</FormLabel>
                 <FormGroup>
-                    <TodoItem>事项1</TodoItem>
-                    <TodoItem>事项2</TodoItem>
-                    <TodoItem>事项3</TodoItem>
+                    {store.uncompleteTodoList.map((item,index) => <TodoItem task={item} key={index}>{item.task}</TodoItem>)}
+                </FormGroup>
+            </section>,
+            <section className={classes.todoList} key="completed">
+                <FormLabel component="legend">已完成</FormLabel>
+                <FormGroup>
+                    {store.completedTodoList.map((item,index) => <TodoItem task={item} key={index}>{item.task}</TodoItem>)}
                 </FormGroup>
             </section>
-        )
+        ])
     }
 }
 
